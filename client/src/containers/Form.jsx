@@ -5,7 +5,7 @@ import Logo from '../components/Logo'
 import FormInput from '../components/FormInput'
 const queryString = require('query-string');
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   background: ${props => props.store === "jp" ? `#b59ac4`
     : props.store === "kr" ? `#0f4c82` : `#03989e`};
   height: 100% ;
