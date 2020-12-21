@@ -200,7 +200,7 @@ const FormInput = (props) => {
       <div style={{ paddingTop: 5 }}>
         <span style={{ color: 'grey' }}>* {payment[props.store]}</span>
         <br></br>
-        <span style={{ color: 'grey' }}>* 089-718-4375 True Wallet ค่าธรรมเนียม 15 บาท</span>
+        <span style={{ color: 'grey' }}>* สริตา สงวนศักดิ์ศรี 089-718-4375 True Wallet ค่าธรรมเนียม 15 บาท</span>
       </div>
 
       <Button type="submit" style={{ backgroundColor: '#4caf50', color: "white", marginTop: 10 }} fullWidth size="small">
