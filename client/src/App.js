@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/form">
+        <Route path="/">
           <FormContainer />
         </Route>
       </Switch>
