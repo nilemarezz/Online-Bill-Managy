@@ -199,6 +199,8 @@ const FormInput = (props) => {
       <input type="file" accept="image/*" style={{ display: 'none' }} ref={inputEl} onChange={onSelectImage} />
       <div style={{ paddingTop: 5 }}>
         <span style={{ color: 'grey' }}>* {payment[props.store]}</span>
+        <br></br>
+        <span style={{ color: 'grey' }}>* 089-718-4375 True Wallet ค่าธรรมเนียม 15 บาท</span>
       </div>
 
       <Button type="submit" style={{ backgroundColor: '#4caf50', color: "white", marginTop: 10 }} fullWidth size="small">
