@@ -194,13 +194,12 @@ const FormInput = (props) => {
         />
       </RadioGroup>
       {showImage ? <SlipPayment image={showImage} store={props.store} onDeletedImage={onDeletedImage} /> : null}
-      <div>
-        <span style={{ color: 'grey' }}>* {payment[props.store]}</span>
-      </div>
 
       <Button style={{ backgroundColor: '#03a9f4', color: 'white', marginTop: 5 }} onClick={() => inputEl.current.click()} size="small" > <BackupIcon style={{ marginRight: 10 }} />อัพโหลดสลิปการโอน</Button>
       <input type="file" accept="image/*" style={{ display: 'none' }} ref={inputEl} onChange={onSelectImage} />
-
+      <div style={{ paddingTop: 5 }}>
+        <span style={{ color: 'grey' }}>* {payment[props.store]}</span>
+      </div>
 
       <Button type="submit" style={{ backgroundColor: '#4caf50', color: "white", marginTop: 10 }} fullWidth size="small">
         Submit
