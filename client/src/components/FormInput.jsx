@@ -24,6 +24,7 @@ const FormInput = (props) => {
   const [logist, setLogist] = useState('type1')
   const [rawImage, setRawImage] = useState(null)
   const [showImage, setShowImage] = useState(null)
+  const [logistPrice, setLogistPrice] = useState(null)
 
 
 
@@ -104,6 +105,7 @@ const FormInput = (props) => {
                 <InputLabel htmlFor="outlined-adornment-amount">ราคา</InputLabel>
                 <OutlinedInput
                   required
+                  type="number"
                   size="small"
                   id="outlined-adornment-amount"
                   startAdornment={<InputAdornment position="start">฿</InputAdornment>}
@@ -177,22 +179,39 @@ const FormInput = (props) => {
         address={note}
         onChange={(e) => setNote(e.target.value)}
       />
-      <RadioGroup row style={{ marginTop: 10 }} required value={logist} onChange={(e) => setLogist(e.target.value)}>
-        <FormControlLabel
-          value="type1"
-          control={<Radio size="small" />}
-          label="ลงทะเบียน"
-          size="small"
-          style={{ color: 'grey' }}
-        />
-        <FormControlLabel
-          value="type2"
-          control={<Radio size="small" />}
-          label="EMS"
-          size="small"
-          style={{ color: 'grey' }}
-        />
-      </RadioGroup>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+
+
+        <RadioGroup row style={{ marginTop: 10 }} required value={logist} onChange={(e) => setLogist(e.target.value)}>
+          <FormControlLabel
+            value="type1"
+            control={<Radio size="small" />}
+            label="ลงทะเบียน"
+            size="small"
+            style={{ color: 'grey' }}
+          />
+          <FormControlLabel
+            value="type2"
+            control={<Radio size="small" />}
+            label="EMS"
+            size="small"
+            style={{ color: 'grey' }}
+          />
+        </RadioGroup>
+        <FormControl fullWidth variant="outlined" size="small" style={{ marginTop: 10 }} required>
+          <InputLabel htmlFor="outlined-adornment-amount">ค่าส่ง</InputLabel>
+          <OutlinedInput
+            type="number"
+            required
+            size="small"
+            id="outlined-adornment-amount"
+            startAdornment={<InputAdornment position="start">฿</InputAdornment>}
+            labelWidth={60}
+            value={logistPrice}
+            onChange={e => setLogistPrice(e.target.value)}
+          />
+        </FormControl>
+      </div>
       {showImage ? <SlipPayment image={showImage} store={props.store} onDeletedImage={onDeletedImage} /> : null}
 
       <Button style={{ backgroundColor: '#03a9f4', color: 'white', marginTop: 5 }} onClick={() => inputEl.current.click()} size="small" > <BackupIcon style={{ marginRight: 10 }} />อัพโหลดสลิปการโอน</Button>
