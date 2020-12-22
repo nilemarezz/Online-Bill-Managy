@@ -1,6 +1,6 @@
 import { sheet } from '../masterdata'
 export const submitForm = async (value, store) => {
-  const res = await fetch(`http://localhost:5000/addFormUser?admin=${sheet[store]["admin"]}&user=${sheet[store]["user"]}`, {
+  const res = await fetch(`https://nodemanagy.herokuapp.com/addFormUser?admin=${sheet[store]["admin"]}&user=${sheet[store]["user"]}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
