@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BackupIcon from '@material-ui/icons/Backup';
 import { color, payment } from '../masterdata'
 import SlipPayment from './SlipPayment'
+import FormHelperText from '@material-ui/core/FormHelperText';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -105,17 +106,18 @@ const FormInput = (props) => {
                 onChange={e => onChangeProductAmount(e.target.value, item.id)}
               />
               <FormControl fullWidth variant="outlined" size="small" style={{ marginTop: 16, marginLeft: 10 }} required>
-                <InputLabel htmlFor="outlined-adornment-amount">ราคา</InputLabel>
+                <InputLabel htmlFor="outlined-adornment-amount">ราคาสินค้า/ชิ้น</InputLabel>
                 <OutlinedInput
                   required
                   type="number"
                   size="small"
                   id="outlined-adornment-amount"
                   startAdornment={<InputAdornment position="start">฿</InputAdornment>}
-                  labelWidth={60}
+                  labelWidth={100}
                   value={item.productPrice}
                   onChange={e => onChangeProductPrice(e.target.value, item.id)}
                 />
+                <FormHelperText>กรอกราคามัดจำหากโอนมัดจำ</FormHelperText>
               </FormControl>
 
             </div>
