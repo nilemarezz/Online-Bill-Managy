@@ -38,7 +38,8 @@ const FormInput = (props) => {
   }
   const onSubmitForm = (e) => {
     e.preventDefault()
-    console.log({ product: product, address, twitter, note, logist })
+    const data = { product: product, address, twitter, note, logist, rawImage, logistPrice }
+    props.openConfirmModal(data)
   }
   const onChangeProductName = (value, id) => {
     const index = product.findIndex(item => item.id == id)
@@ -59,9 +60,9 @@ const FormInput = (props) => {
     setProduct(newProduct)
   }
   const onSelectImage = (event) => {
+    props.closeError()
     setRawImage(event.target.files[0])
     setShowImage(URL.createObjectURL(event.target.files[0]))
-
   }
   const onDeletedImage = () => {
     inputEl.current.value = ""
@@ -70,10 +71,11 @@ const FormInput = (props) => {
   }
   const classes = useStyles();
   return (
-    <form className={classes.root} onSubmit={(e) => onSubmitForm(e)}>
+    <form className={classes.root} onSubmit={(e) => onSubmitForm(e)} autoComplete="off">
       {product.map(item => {
         return (
           <React.Fragment key={item.id}>
+            <p style={{ lineHeight: 0, color: 'red' }}>{props.error}</p>
             <TextField
               required
               id="outlined-required"

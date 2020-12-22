@@ -6,13 +6,26 @@ import {
   Link
 } from "react-router-dom";
 import FormContainer from './containers/Form'
+import Bill from './containers/Bill'
+import ErrorPage from './containers/ErrorPage'
 function App() {
+  const [formData, setFormData] = useState(null)
+  const submitFormData = () => {
+    console.log(formData)
+  }
   return (
     <Router>
       <Switch>
-        <Route path="/">
-          <FormContainer />
+        <Route path="/summary">
+          <Bill formData={formData} />
         </Route>
+        <Route path="/form">
+          <FormContainer formData={formData} onSetFormData={(data) => setFormData(data)} submitFormData={submitFormData} />
+        </Route>
+        <Route >
+          <ErrorPage />
+        </Route>
+
       </Switch>
     </Router>
   );
