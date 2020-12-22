@@ -8,10 +8,11 @@ import {
 import FormContainer from './containers/Form'
 import Bill from './containers/Bill'
 import ErrorPage from './containers/ErrorPage'
+import { submitForm } from './services/submitForm'
 function App() {
   const [formData, setFormData] = useState(null)
-  const submitFormData = () => {
-    console.log(formData)
+  const submitFormData = async () => {
+    return false
   }
   return (
     <Router>

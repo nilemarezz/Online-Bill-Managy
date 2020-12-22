@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button'
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,13 +37,19 @@ export default function TransitionsModal(props) {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
-            <Typography variant="h5">Confirm to submit ?</Typography>
-            <Typography variant="subtitle1">You cannot edit detail after submit.</Typography>
-            <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10, justifyContent: 'space-between' }}>
-              <Button style={{ backgroundColor: '#4caf50', color: 'white' }} onClick={props.submitForm}>Confirm</Button>
-              <Button style={{ backgroundColor: '#ff1744', color: 'white', padding: '0px 15px' }} onClick={props.handleClose}>Close</Button>
-            </div>
+            {
+              props.loading ? <CircularProgress /> :
+                <>
+                  <Typography variant="h5">Confirm to submit ?</Typography>
+                  <Typography variant="subtitle1">You cannot edit detail after submit.</Typography>
+                  <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10, justifyContent: 'space-between' }}>
+                    <Button style={{ backgroundColor: '#4caf50', color: 'white' }} onClick={props.submitForm}>Confirm</Button>
+                    <Button style={{ backgroundColor: '#ff1744', color: 'white', padding: '0px 15px' }} onClick={props.handleClose}>Close</Button>
+                  </div>
+                </>
+            }
           </div>
+
         </Fade>
       </Modal>
     </div>

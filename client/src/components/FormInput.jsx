@@ -25,7 +25,7 @@ const FormInput = (props) => {
   const [rawImage, setRawImage] = useState(null)
   const [showImage, setShowImage] = useState(null)
   const [logistPrice, setLogistPrice] = useState(null)
-
+  const [payStatus, setPaystatus] = useState('จ่ายเต็ม')
 
 
   const onAddProduct = () => {
@@ -38,7 +38,7 @@ const FormInput = (props) => {
   }
   const onSubmitForm = (e) => {
     e.preventDefault()
-    const data = { product: product, address, twitter, note, logist, rawImage, logistPrice }
+    const data = { product: product, address, twitter, note, logist, rawImage, logistPrice, payStatus }
     props.openConfirmModal(data)
   }
   const onChangeProductName = (value, id) => {
@@ -75,7 +75,7 @@ const FormInput = (props) => {
       {product.map(item => {
         return (
           <React.Fragment key={item.id}>
-            <p style={{ lineHeight: 0, color: 'red' }}>{props.error}</p>
+
             <TextField
               required
               id="outlined-required"
@@ -95,6 +95,7 @@ const FormInput = (props) => {
                 id="standard-number"
                 label="จำนวน"
                 type="number"
+                InputProps={{ inputProps: { min: 1 } }}
                 variant="outlined"
                 InputLabelProps={{
                   shrink: true,
@@ -214,16 +215,32 @@ const FormInput = (props) => {
           />
         </FormControl>
       </div>
-      {showImage ? <SlipPayment image={showImage} store={props.store} onDeletedImage={onDeletedImage} /> : null}
+      <RadioGroup row style={{ marginTop: 10 }} required value={payStatus} onChange={(e) => setPaystatus(e.target.value)}>
+        <FormControlLabel
+          value="จ่ายเต็ม"
+          control={<Radio size="small" />}
+          label="จ่ายเต็ม"
+          size="small"
+          style={{ color: 'grey' }}
+        />
+        <FormControlLabel
+          value="มัดจำ"
+          control={<Radio size="small" />}
+          label="มัดจำ"
+          size="small"
+          style={{ color: 'grey' }}
+        />
+      </RadioGroup>
+      {/* {showImage ? <SlipPayment image={showImage} store={props.store} onDeletedImage={onDeletedImage} /> : null} */}
 
-      <Button style={{ backgroundColor: '#03a9f4', color: 'white', marginTop: 5 }} onClick={() => inputEl.current.click()} size="small" > <BackupIcon style={{ marginRight: 10 }} />อัพโหลดสลิปการโอน</Button>
+      {/* <Button style={{ backgroundColor: '#03a9f4', color: 'white', marginTop: 5 }} onClick={() => inputEl.current.click()} size="small" > <BackupIcon style={{ marginRight: 10 }} />อัพโหลดสลิปการโอน</Button>
       <input type="file" accept="image/*" style={{ display: 'none' }} ref={inputEl} onChange={onSelectImage} />
       <div style={{ paddingTop: 5 }}>
         <span style={{ color: 'grey' }}>* {payment[props.store]}</span>
         <br></br>
         <span style={{ color: 'grey' }}>* สริตา สงวนศักดิ์ศรี 089-718-4375 True Wallet ค่าธรรมเนียม 15 บาท</span>
-      </div>
-
+      </div> */}
+      <p style={{ lineHeight: 0, color: 'red' }}>{props.error}</p>
       <Button type="submit" style={{ backgroundColor: '#4caf50', color: "white", marginTop: 10 }} fullWidth size="small">
         Submit
       </Button>

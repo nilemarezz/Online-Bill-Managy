@@ -65,7 +65,7 @@ const Bill = (props) => {
 
         </ContainerForm>
         <div style={{ justifyContent: 'flex-start', display: 'flex', alignItems: 'flex-start' }}>
-          <Typography variant="caption" style={{ lineHeight: 0, }}>* กนุณาแคปหน้าจอแล้วส่งให้ร้านค้า</Typography>
+          <Typography variant="caption" style={{ lineHeight: 0, }}>* กรุณาแคปหน้าจอแล้วส่งให้ร้านค้า</Typography>
         </div>
         <BackButton fullWidth onClick={() => props.history.push(`/form?store=${parsed.store}`)}>Back</BackButton>
 

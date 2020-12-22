@@ -5,6 +5,7 @@ import { Container, Button } from '@material-ui/core';
 import Logo from '../components/Logo'
 import FormInput from '../components/FormInput'
 import ConfirmModal from '../components/ConfirmModal'
+import { submitForm as submitData } from '../services/submitForm'
 const queryString = require('query-string');
 const Background = styled.div`
   position: fixed;
@@ -41,16 +42,24 @@ const FormContainer = (props) => {
   const parsed = queryString.parse(props.location.search);
   const [openModal, setOpenModal] = useState(false)
   const [error, setError] = useState(null)
-
-  const submitForm = () => {
-    if (props.formData.rawImage) {
-      props.submitFormData()
-      props.history.push(`/summary?store=${parsed.store}`)
-
+  const [loading, setLoading] = useState(false)
+  const submitForm = async () => {
+    // if (props.formData.rawImage) {
+    setLoading(true)
+    const isSuccess = await submitData(props.formData, parsed.store)
+    if (isSuccess) {
+      setLoading(false)
+      await props.history.push(`/summary?store=${parsed.store}`)
     } else {
+      setLoading(false)
       handleClose()
-      setError('* Please upload the payment slip')
+      setError('* Something went wrong. Please contact admin')
     }
+    // } else {
+    //   setLoading(false)
+    //   handleClose()
+    //   setError('* Please upload the payment slip')
+    // }
   }
   const openConfirmModal = (data) => {
     setOpenModal(true)
@@ -73,7 +82,7 @@ const FormContainer = (props) => {
           </ContainerForm>
 
         </Background>
-        <ConfirmModal open={openModal} handleClose={handleClose} submitForm={submitForm} />
+        <ConfirmModal open={openModal} handleClose={handleClose} submitForm={submitForm} loading={loading} />
       </>
     )
   } else {
