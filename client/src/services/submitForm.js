@@ -1,7 +1,5 @@
 import { sheet } from '../masterdata'
 export const submitForm = async (value, store) => {
-  console.log(sheet[store]["admin"])
-  console.log(sheet[store]["user"])
   const res = await fetch(`http://localhost:5000/addFormUser?admin=${sheet[store]["admin"]}&user=${sheet[store]["user"]}`, {
     method: 'POST',
     headers: {
