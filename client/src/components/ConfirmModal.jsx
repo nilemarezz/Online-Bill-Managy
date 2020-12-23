@@ -42,9 +42,9 @@ export default function TransitionsModal(props) {
                 <>
                   <Typography variant="h5">Confirm to submit ?</Typography>
                   <Typography variant="subtitle1">You cannot edit detail after submit.</Typography>
-                  <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10, justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10, justifyContent: 'space-around' }}>
                     <Button style={{ backgroundColor: '#4caf50', color: 'white' }} onClick={props.submitForm}>Confirm</Button>
-                    <Button style={{ backgroundColor: '#ff1744', color: 'white', padding: '0px 15px' }} onClick={props.handleClose}>Close</Button>
+                    <Button style={{ backgroundColor: '#ff1744', color: 'white', padding: '0px 15px' }} onClick={props.handleClose}>Cancel</Button>
                   </div>
                 </>
             }
