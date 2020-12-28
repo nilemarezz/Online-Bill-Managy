@@ -232,6 +232,13 @@ const FormInput = (props) => {
           size="small"
           style={{ color: 'grey' }}
         />
+        <FormControlLabel
+          value="ยังไม่จ่าย"
+          control={<Radio size="small" />}
+          label="ยังไม่จ่าย"
+          size="small"
+          style={{ color: 'grey' }}
+        />
       </RadioGroup>
       {/* {showImage ? <SlipPayment image={showImage} store={props.store} onDeletedImage={onDeletedImage} /> : null} */}
 
