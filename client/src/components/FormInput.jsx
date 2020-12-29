@@ -27,7 +27,22 @@ const FormInput = (props) => {
   const [showImage, setShowImage] = useState(null)
   const [logistPrice, setLogistPrice] = useState(null)
   const [payStatus, setPaystatus] = useState('จ่ายเต็ม')
+  const [disabledPrice, setDisabledPrice] = useState(false)
 
+  const onSetPayStatus = (value) => {
+    let newProduct = [...product]
+    if (value === "ยังไม่จ่าย") {
+      for (let i = 0; i < newProduct.length; i++) {
+        newProduct[i].productPrice = 0;
+      }
+      setProduct(newProduct)
+      setDisabledPrice(true)
+      setPaystatus(value)
+    } else {
+      setDisabledPrice(false)
+      setPaystatus(value)
+    }
+  }
 
   const onAddProduct = () => {
     setProduct([...product, { id: product.length + 1, productName: "", productPrice: "", productAmount: "" }])
@@ -114,8 +129,9 @@ const FormInput = (props) => {
                   id="outlined-adornment-amount"
                   startAdornment={<InputAdornment position="start">฿</InputAdornment>}
                   labelWidth={100}
-                  value={item.productPrice}
+                  value={disabledPrice ? 0 : item.productPrice}
                   onChange={e => onChangeProductPrice(e.target.value, item.id)}
+                  disabled={disabledPrice}
                 />
                 <FormHelperText>กรอกราคามัดจำหากโอนมัดจำ</FormHelperText>
               </FormControl>
@@ -217,7 +233,7 @@ const FormInput = (props) => {
           />
         </FormControl>
       </div>
-      <RadioGroup row style={{ marginTop: 10 }} required value={payStatus} onChange={(e) => setPaystatus(e.target.value)}>
+      <RadioGroup row style={{ marginTop: 10 }} required value={payStatus} onChange={(e) => onSetPayStatus(e.target.value)}>
         <FormControlLabel
           value="จ่ายเต็ม"
           control={<Radio size="small" />}
