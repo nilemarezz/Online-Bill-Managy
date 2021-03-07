@@ -133,7 +133,7 @@ const FormInput = (props) => {
                   onChange={e => onChangeProductPrice(e.target.value, item.id)}
                   disabled={disabledPrice}
                 />
-                <FormHelperText>กรอกราคามัดจำหากโอนมัดจำ</FormHelperText>
+                <FormHelperText>กรอกราคามัดจำหากโอนมัดจำ (ราคาต่อชิ้น) </FormHelperText>
               </FormControl>
 
             </div>
